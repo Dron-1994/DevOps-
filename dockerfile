@@ -4,15 +4,16 @@ FROM ubuntu:18.04
 MAINTAINER dron  <dronbarabash2637@gmail.com>
 
 
-#Так как не всепакеты доступны в стандартных репозиториях, то добавляю в sources.list нужные записи
+#Так как не все пакеты доступны в стандартных репозиториях, то добавляю в sources.list нужные записи
 RUN  echo -e "deb http://archive.ubuntu.com/ubuntu bionic main universe\ndeb http://archive.ubuntu.com/ubuntu bionic-security main universe\ndeb http://archive.ubuntu.com/ubuntu bionic-updates main universe" >> /etc/apt/sources.list
 
 #обновляем пакеты
 RUN apt-get update
+RUN apt-get upgrade
 
 
-#переходив в рабочую дерикторию(выбрал ту, в которой я работаю
-WORKDIR /home/dron/DevOps-git
+#переходим в рабочую дерикторию(выбрал ту, в которой я работаю
+WORKDIR /home/dron/DevOps
 
 #для коректной работы устанавливаем  apache2, php и БД
 RUN apt-get install apache2 libapache2-mod-php
