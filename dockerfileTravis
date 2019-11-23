@@ -1,0 +1,17 @@
+FROM golang:1.7
+
+MAINTAINER dron  <dronbarabash2637@gmail.com>
+
+COPY ./screen-monitoring /screen-monitoring/
+
+COPY ./dashboard /screen-monitoring/dashboard
+
+COPY ./public /screen-monitoring/public
+
+WORKDIR /screen-monitoring
+
+EXPOSE 8080
+
+CMD ["./screen-monitoring"]
+
+
