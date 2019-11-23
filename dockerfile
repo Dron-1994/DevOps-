@@ -1,5 +1,9 @@
 FROM ubuntu:18.04
 
+#поле не обязательное, указывает кто автор
+MAINTAINER dron  <dronbarabash2637@gmail.com>
+
+
 #Так как не всепакеты доступны в стандартных репозиториях, то добавляю в sources.list нужные записи
 RUN  echo -e "deb http://archive.ubuntu.com/ubuntu bionic main universe\ndeb http://archive.ubuntu.com/ubuntu bionic-security main universe\ndeb http://archive.ubuntu.com/ubuntu bionic-updates main universe" >> /etc/apt/sources.list
 

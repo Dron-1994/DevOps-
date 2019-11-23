@@ -1,1 +1,32 @@
-1
+# используем виртуальную машину
+sudo: 'required'
+
+# настроим докер
+services:
+  - 'docker'
+
+# запустим наш скрипт
+before_install:
+  - '/home/dron/devops-/.travis/main.sh'
+
+# сначала проверим тестом нет ли ошибок, и если все ок,тогда создаються образы.
+script:
+  - 'make test'
+  - 'make image'
+
+#.
+after_success:
+        проходим авторизацию на докерхаб и отправляем image
+  - if [[ "$TRAVIS_BRANCH" == "master" ]]; then
+      cat > ~/.dockercfg << EOF
+
+  "https://index.docker.io/v1/": 
+    "auth": "$ZHJvbjI2Mzc6RHJvbl8yNjM3"
+    "email": "$HUB_EMAIL"
+  EOF
+  make push-image ; 
+    fi 
+
+# уведомление на почту не слеть
+notifications:
+  email: false
